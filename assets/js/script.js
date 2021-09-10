@@ -4,6 +4,7 @@ var taskIdCounter = 0;
 var pageContentEl = document.querySelector("#page-content");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
 var tasksCompletedEl = document.querySelector("#tasks-completed");
+var tasks = [];
 
 var taskFormHandler = function(event) {
   event.preventDefault();
@@ -33,7 +34,8 @@ if (isEdit) {
 else {
   var taskDataObj = {
     name: taskNameInput,
-    type: taskTypeInput
+    type: taskTypeInput,
+    status: "to do"
   };
 
   createTaskEl(taskDataObj);
@@ -58,6 +60,10 @@ var createTaskEl = function(taskDataObj) {
 
   // add list item to list
   tasksToDoEl.appendChild(listItemEl);
+
+  taskDataObj.id = taskIdCounter;
+
+  tasks.push(taskDataObj);
 
   taskIdCounter++;
 };
